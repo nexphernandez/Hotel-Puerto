@@ -1,5 +1,6 @@
 package org.docencia.hotel.persistence.repository.jpa;
 
+import org.docencia.hotel.persistence.jpa.entity.RoomEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * Interfaz para hacer el contrato con Jpa
  */
 @Repository
-public interface RoomRepository extends JpaRepository<RoomRepository, Long>{
+public interface RoomRepository extends JpaRepository<RoomEntity, Long>{
 }
