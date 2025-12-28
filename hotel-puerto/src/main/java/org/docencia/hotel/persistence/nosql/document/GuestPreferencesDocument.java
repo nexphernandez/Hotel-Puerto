@@ -41,7 +41,7 @@ public class GuestPreferencesDocument {
      * Constructor con todos los atributos de la clase GuestPreferencesDocument
      *
      * @param guestId identificador de la clase GuestReference
-     * @param preferredLanguage leguaje de preferecia del guest
+     * @param preferredLanguage leguaje de preferecia del guestEntity
      * @param newsLetterOptIn si tiene preferencia a recibir el preiodico
      * @param tags etiquetas del guest
      * @param favoriteRoomType tipo de habitacion favorita del guest
@@ -59,9 +59,9 @@ public class GuestPreferencesDocument {
     }
 
     /**
-     * Constructor con el identificardor de la clase GuestPreferencesDocument
+     * Constructor con el identificardor de la clase GuestPreferencesDocument y del guestEntity
      *
-     * @param guestId identificador del guest
+     * @param guestId identificador del guestEntity
      */
     public GuestPreferencesDocument(Long guestId) {
         this.guestId = guestId;

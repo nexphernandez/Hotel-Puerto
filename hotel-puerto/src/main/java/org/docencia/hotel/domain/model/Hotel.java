@@ -1,5 +1,102 @@
 package org.docencia.hotel.domain.model;
-
+import java.util.Objects;
+/**
+ * @author nexphernandez
+ * @version 1.0.0
+ */
 public class Hotel {
-    // TODO: modelo de dominio (sin anotaciones de persistencia)
+    private Long id;
+
+    private String name;
+
+    private String address;
+
+    private Room rooms;
+
+    /**
+     * Constructor vacio de la clase Hotel
+     */
+    public Hotel() {
+    }
+
+    /**
+     * Constructor con el identificador de la clase Hotel
+     * @param id iendtificador del hotel
+     */
+    public Hotel(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Constructor con los atributos de la clase Hotel
+     * @param id identificador del hotel
+     * @param name nombre del hotel
+     * @param address direccion del hotel
+     * @param rooms habitaciones del hotel
+     */
+    public Hotel(Long id, String name, String address, Room rooms) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.rooms = rooms;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Room getRooms() {
+        return this.rooms;
+    }
+
+    public void setRooms(Room rooms) {
+        this.rooms = rooms;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Hotel)) {
+            return false;
+        }
+        Hotel hotel = (Hotel) o;
+        return Objects.equals(id, hotel.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            ", address='" + getAddress() + "'" +
+            ", rooms='" + getRooms() + "'" +
+            "}";
+    }
+    
 }

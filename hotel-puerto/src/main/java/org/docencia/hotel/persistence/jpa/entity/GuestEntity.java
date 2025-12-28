@@ -31,7 +31,7 @@ public class GuestEntity {
     private String phone;
 
     @OneToMany(mappedBy = "guest")
-    Set<BookingEntity> bookings;
+    private Set<BookingEntity> bookings;
 
     @Transient
     private GuestPreferencesDocument preference;
