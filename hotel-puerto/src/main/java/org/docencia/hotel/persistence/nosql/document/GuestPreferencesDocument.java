@@ -6,7 +6,6 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-//TODO: verificar el equals si se hace con el id de la clase o de GuestEntity y el constructor con el id tambien
 /**
  * @author nexphernandez
  * @version 1.0.0
@@ -15,9 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class GuestPreferencesDocument {
 
     @Id
-    private String id;
-
-    @Field("guestId")
     private Long guestId;
 
     @Field("preferredLanguage")
@@ -36,25 +32,24 @@ public class GuestPreferencesDocument {
     private String notes;
 
     /**
-     * Constructor vacio
+     * Constructor vacio de la clase GuestPreferencesDocument
      */
     public GuestPreferencesDocument() {
     }
 
     /**
-     * Constructor con todos los atributos de la clase
+     * Constructor con todos los atributos de la clase GuestPreferencesDocument
      *
-     * @param id identificador de la clase GuestReference
-     * @param guestId id del guest
+     * @param guestId identificador de la clase GuestReference
      * @param preferredLanguage leguaje de preferecia del guest
      * @param newsLetterOptIn si tiene preferencia a recibir el preiodico
      * @param tags etiquetas del guest
      * @param favoriteRoomType tipo de habitacion favorita del guest
      * @param notes notas del guest
      */
-    public GuestPreferencesDocument(String id, Long guestId, String preferredLanguage,
+    public GuestPreferencesDocument( Long guestId, String preferredLanguage,
             boolean newsLetterOptIn, List<String> tags, String favoriteRoomType, String notes) {
-        this.id = id;
+
         this.guestId = guestId;
         this.preferredLanguage = preferredLanguage;
         this.newsLetterOptIn = newsLetterOptIn;
@@ -64,8 +59,7 @@ public class GuestPreferencesDocument {
     }
 
     /**
-     * Constructor con el identificardor para relacionar la clase
-     * GuestPreferencesDocument con la clase GuestEntity
+     * Constructor con el identificardor de la clase GuestPreferencesDocument
      *
      * @param guestId identificador del guest
      */
