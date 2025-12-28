@@ -26,11 +26,11 @@ public class BookingEntity {
 
     @ManyToOne
     @JoinColumn(name = "room_id")
-    private RoomEntity roomId;
+    private RoomEntity room;
 
     @ManyToOne
     @JoinColumn(name = "guest_id")
-    private GuestEntity guestId;
+    private GuestEntity guest;
 
     @Column(name = "check_in")
     private LocalDate checkIn;
@@ -62,10 +62,10 @@ public class BookingEntity {
      * @param checkIn fecha y hora de entrada de la reserva
      * @param checkOut fecha y hora de salida de la reserva
      */
-    public BookingEntity(Long id, RoomEntity roomId, GuestEntity guestId, LocalDate checkIn, LocalDate checkOut) {
+    public BookingEntity(Long id, RoomEntity room, GuestEntity guest, LocalDate checkIn, LocalDate checkOut) {
         this.id = id;
-        this.roomId = roomId;
-        this.guestId = guestId;
+        this.room = room;
+        this.guest = guest;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
@@ -78,20 +78,20 @@ public class BookingEntity {
         this.id = id;
     }
 
-    public RoomEntity getRoomId() {
-        return this.roomId;
+    public RoomEntity getRoom() {
+        return room;
     }
 
-    public void setRoomId(RoomEntity roomId) {
-        this.roomId = roomId;
+    public void setRoom(RoomEntity room) {
+        this.room = room;
     }
 
-    public GuestEntity getGuestId() {
-        return this.guestId;
+    public GuestEntity getGuest() {
+        return guest;
     }
 
-    public void setGuestId(GuestEntity guestId) {
-        this.guestId = guestId;
+    public void setGuest(GuestEntity guest) {
+        this.guest = guest;
     }
 
     public LocalDate getCheckIn() {
@@ -129,13 +129,17 @@ public class BookingEntity {
 
     @Override
     public String toString() {
-        return "{"
-                + " id='" + getId() + "'"
-                + ", roomId='" + getRoomId() + "'"
-                + ", guestId='" + getGuestId() + "'"
-                + ", checkIn='" + getCheckIn() + "'"
-                + ", checkOut='" + getCheckOut() + "'"
-                + "}";
+        StringBuilder sb = new StringBuilder();
+        sb.append("BookingEntity{");
+        sb.append("id=").append(id);
+        sb.append(", room=").append(room);
+        sb.append(", guest=").append(guest);
+        sb.append(", checkIn=").append(checkIn);
+        sb.append(", checkOut=").append(checkOut);
+        sb.append('}');
+        return sb.toString();
     }
+
+
 
 }

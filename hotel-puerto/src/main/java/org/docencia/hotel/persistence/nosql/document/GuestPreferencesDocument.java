@@ -83,15 +83,11 @@ public class GuestPreferencesDocument {
         this.preferredLanguage = preferredLanguage;
     }
 
-    public boolean isNewsletterOptIn() {
+    public boolean getNewsLetterOptIn() {
         return this.newsLetterOptIn;
     }
 
-    public boolean getNewsletterOptIn() {
-        return this.newsLetterOptIn;
-    }
-
-    public void setNewsletterOptIn(boolean newsLetterOptIn) {
+    public void setNewsLetterOptIn(boolean newsLetterOptIn) {
         this.newsLetterOptIn = newsLetterOptIn;
     }
 
@@ -141,7 +137,7 @@ public class GuestPreferencesDocument {
         return "{"
                 + " guestId='" + getGuestId() + "'"
                 + ", preferredLanguage='" + getPreferredLanguage() + "'"
-                + ", newsletterOptIn='" + isNewsletterOptIn() + "'"
+                + ", newsletterOptIn='" + getNewsLetterOptIn() + "'"
                 + ", tags='" + getTags() + "'"
                 + ", favoriteRoomType='" + getFavoriteRoomType() + "'"
                 + ", notes='" + getNotes() + "'"

@@ -10,9 +10,9 @@ import java.util.Objects;
 public class Booking {
     private Long id;
 
-    private Room roomId;
+    private Room room;
 
-    private Guest guestId;
+    private Guest guest;
 
     private LocalDate checkIn;
 
@@ -37,15 +37,15 @@ public class Booking {
      * Constructor con todos los atributos de la clase booking
      *
      * @param id identificador de la reserva
-     * @param roomId identificador de la habitacion de la reserva
-     * @param guestId identificador de huesped de la reserva
+     * @param room identificador de la habitacion de la reserva
+     * @param guest identificador de huesped de la reserva
      * @param checkIn fecha y hora de entrada de la reserva
      * @param checkOut fecha y hora de salida de la reserva
      */
-    public Booking(Long id, Room roomId, Guest guestId, LocalDate checkIn, LocalDate checkOut) {
+    public Booking(Long id, Room room, Guest guest, LocalDate checkIn, LocalDate checkOut) {
         this.id = id;
-        this.roomId = roomId;
-        this.guestId = guestId;
+        this.room = room;
+        this.guest = guest;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
@@ -58,22 +58,22 @@ public class Booking {
         this.id = id;
     }
 
-    public Room getRoomId() {
-        return this.roomId;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomId(Room roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public Guest getGuestId() {
-        return this.guestId;
+    public Guest getGuest() {
+        return guest;
     }
 
-    public void setGuestId(Guest guestId) {
-        this.guestId = guestId;
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
-
+    
     public LocalDate getCheckIn() {
         return this.checkIn;
     }
@@ -110,11 +110,13 @@ public class Booking {
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", roomId='" + getRoomId() + "'" +
-            ", guestId='" + getGuestId() + "'" +
+            ", roomId='" + getRoom() + "'" +
+            ", guestId='" + getGuest() + "'" +
             ", checkIn='" + getCheckIn() + "'" +
             ", checkOut='" + getCheckOut() + "'" +
             "}";
     }
+
+
     
 }

@@ -1,5 +1,6 @@
 package org.docencia.hotel.domain.model;
 import java.util.Objects;
+import java.util.Set;
 /**
  * @author nexphernandez
  * @version 1.0.0
@@ -11,7 +12,7 @@ public class Hotel {
 
     private String address;
 
-    private Room rooms;
+    private Set<Room> rooms;
 
     /**
      * Constructor vacio de la clase Hotel
@@ -34,7 +35,7 @@ public class Hotel {
      * @param address direccion del hotel
      * @param rooms habitaciones del hotel
      */
-    public Hotel(Long id, String name, String address, Room rooms) {
+    public Hotel(Long id, String name, String address, Set<Room> rooms) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -65,11 +66,11 @@ public class Hotel {
         this.address = address;
     }
 
-    public Room getRooms() {
+    public Set<Room> getRooms() {
         return this.rooms;
     }
 
-    public void setRooms(Room rooms) {
+    public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
     }
 

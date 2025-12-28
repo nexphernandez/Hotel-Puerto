@@ -69,12 +69,8 @@ public class GuestPreferences {
         this.preferredLanguage = preferredLanguage;
     }
 
-    public boolean isNewsLetterOptIn() {
-        return this.newsLetterOptIn;
-    }
-
     public boolean getNewsLetterOptIn() {
-        return this.newsLetterOptIn;
+        return newsLetterOptIn;
     }
 
     public void setNewsLetterOptIn(boolean newsLetterOptIn) {
@@ -126,7 +122,7 @@ public class GuestPreferences {
         return "{" +
             " guestId='" + getGuestId() + "'" +
             ", preferredLanguage='" + getPreferredLanguage() + "'" +
-            ", newsLetterOptIn='" + isNewsLetterOptIn() + "'" +
+            ", newsLetterOptIn='" + getNewsLetterOptIn() + "'" +
             ", tags='" + getTags() + "'" +
             ", favoriteRoomType='" + getFavoriteRoomType() + "'" +
             ", notes='" + getNotes() + "'" +

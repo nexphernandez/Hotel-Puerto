@@ -1,6 +1,7 @@
 package org.docencia.hotel.persistence.jpa.entity;
 
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +28,7 @@ public class HotelEntity {
     private String address;
 
     @OneToMany(mappedBy = "hotel")
-    private RoomEntity rooms;
+    private Set<RoomEntity> rooms;
 
     /**
      * Constructor vacio de la clase HotelEntity
@@ -50,7 +51,7 @@ public class HotelEntity {
      * @param address direccion del hotel
      * @param rooms habitaciones del hotel
      */
-    public HotelEntity(Long id, String name, String address, RoomEntity rooms) {
+    public HotelEntity(Long id, String name, String address, Set<RoomEntity> rooms) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -81,32 +82,12 @@ public class HotelEntity {
         this.address = address;
     }
 
-    public RoomEntity getRooms() {
+    public Set<RoomEntity> getRooms() {
         return this.rooms;
     }
 
-    public void setRooms(RoomEntity rooms) {
+    public void setRooms(Set<RoomEntity> rooms) {
         this.rooms = rooms;
-    }
-
-    public HotelEntity id(Long id) {
-        setId(id);
-        return this;
-    }
-
-    public HotelEntity name(String name) {
-        setName(name);
-        return this;
-    }
-
-    public HotelEntity address(String address) {
-        setAddress(address);
-        return this;
-    }
-
-    public HotelEntity rooms(RoomEntity rooms) {
-        setRooms(rooms);
-        return this;
     }
 
     @Override

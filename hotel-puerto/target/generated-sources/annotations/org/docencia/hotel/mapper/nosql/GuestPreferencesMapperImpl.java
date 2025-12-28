@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-28T17:07:42+0000",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251118-1623, environment: Java 21.0.9 (Eclipse Adoptium)"
+    date = "2025-12-28T19:31:13+0000",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23 (Oracle Corporation)"
 )
 @Component
 public class GuestPreferencesMapperImpl implements GuestPreferencesMapper {
@@ -25,6 +25,7 @@ public class GuestPreferencesMapperImpl implements GuestPreferencesMapper {
 
         guestPreferencesDocument.setGuestId( domain.getGuestId() );
         guestPreferencesDocument.setPreferredLanguage( domain.getPreferredLanguage() );
+        guestPreferencesDocument.setNewsLetterOptIn( domain.getNewsLetterOptIn() );
         List<String> list = domain.getTags();
         if ( list != null ) {
             guestPreferencesDocument.setTags( new ArrayList<String>( list ) );
@@ -45,6 +46,7 @@ public class GuestPreferencesMapperImpl implements GuestPreferencesMapper {
 
         guestPreferences.setGuestId( doc.getGuestId() );
         guestPreferences.setPreferredLanguage( doc.getPreferredLanguage() );
+        guestPreferences.setNewsLetterOptIn( doc.getNewsLetterOptIn() );
         List<String> list = doc.getTags();
         if ( list != null ) {
             guestPreferences.setTags( new ArrayList<String>( list ) );
