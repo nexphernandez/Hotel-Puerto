@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-28T19:31:12+0000",
+    date = "2025-12-29T13:19:49+0000",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23 (Oracle Corporation)"
 )
 @Component
@@ -59,34 +59,6 @@ public class BookingMapperImpl implements BookingMapper {
         return booking;
     }
 
-    @Override
-    public Set<Booking> toDomainList(Set<BookingEntity> entities) {
-        if ( entities == null ) {
-            return null;
-        }
-
-        Set<Booking> set = new LinkedHashSet<Booking>( Math.max( (int) ( entities.size() / .75f ) + 1, 16 ) );
-        for ( BookingEntity bookingEntity : entities ) {
-            set.add( toDomain( bookingEntity ) );
-        }
-
-        return set;
-    }
-
-    @Override
-    public Set<BookingEntity> toEntityList(Set<Booking> domains) {
-        if ( domains == null ) {
-            return null;
-        }
-
-        Set<BookingEntity> set = new LinkedHashSet<BookingEntity>( Math.max( (int) ( domains.size() / .75f ) + 1, 16 ) );
-        for ( Booking booking : domains ) {
-            set.add( toEntity( booking ) );
-        }
-
-        return set;
-    }
-
     protected Set<RoomEntity> roomSetToRoomEntitySet(Set<Room> set) {
         if ( set == null ) {
             return null;
@@ -115,6 +87,19 @@ public class BookingMapperImpl implements BookingMapper {
         return hotelEntity;
     }
 
+    protected Set<BookingEntity> bookingSetToBookingEntitySet(Set<Booking> set) {
+        if ( set == null ) {
+            return null;
+        }
+
+        Set<BookingEntity> set1 = new LinkedHashSet<BookingEntity>( Math.max( (int) ( set.size() / .75f ) + 1, 16 ) );
+        for ( Booking booking : set ) {
+            set1.add( toEntity( booking ) );
+        }
+
+        return set1;
+    }
+
     protected RoomEntity roomToRoomEntity(Room room) {
         if ( room == null ) {
             return null;
@@ -127,7 +112,7 @@ public class BookingMapperImpl implements BookingMapper {
         roomEntity.setType( room.getType() );
         roomEntity.setPricePerNight( room.getPricePerNight() );
         roomEntity.setHotel( hotelToHotelEntity( room.getHotel() ) );
-        roomEntity.setBookings( toEntityList( room.getBookings() ) );
+        roomEntity.setBookings( bookingSetToBookingEntitySet( room.getBookings() ) );
 
         return roomEntity;
     }
@@ -163,7 +148,7 @@ public class BookingMapperImpl implements BookingMapper {
         guestEntity.setFullName( guest.getFullName() );
         guestEntity.setEmail( guest.getEmail() );
         guestEntity.setPhone( guest.getPhone() );
-        guestEntity.setBookings( toEntityList( guest.getBookings() ) );
+        guestEntity.setBookings( bookingSetToBookingEntitySet( guest.getBookings() ) );
         guestEntity.setPreference( guestPreferencesToGuestPreferencesDocument( guest.getPreference() ) );
 
         return guestEntity;
@@ -197,6 +182,19 @@ public class BookingMapperImpl implements BookingMapper {
         return hotel;
     }
 
+    protected Set<Booking> bookingEntitySetToBookingSet(Set<BookingEntity> set) {
+        if ( set == null ) {
+            return null;
+        }
+
+        Set<Booking> set1 = new LinkedHashSet<Booking>( Math.max( (int) ( set.size() / .75f ) + 1, 16 ) );
+        for ( BookingEntity bookingEntity : set ) {
+            set1.add( toDomain( bookingEntity ) );
+        }
+
+        return set1;
+    }
+
     protected Room roomEntityToRoom(RoomEntity roomEntity) {
         if ( roomEntity == null ) {
             return null;
@@ -209,7 +207,7 @@ public class BookingMapperImpl implements BookingMapper {
         room.setType( roomEntity.getType() );
         room.setPricePerNight( roomEntity.getPricePerNight() );
         room.setHotel( hotelEntityToHotel( roomEntity.getHotel() ) );
-        room.setBookings( toDomainList( roomEntity.getBookings() ) );
+        room.setBookings( bookingEntitySetToBookingSet( roomEntity.getBookings() ) );
 
         return room;
     }
@@ -245,7 +243,7 @@ public class BookingMapperImpl implements BookingMapper {
         guest.setFullName( guestEntity.getFullName() );
         guest.setEmail( guestEntity.getEmail() );
         guest.setPhone( guestEntity.getPhone() );
-        guest.setBookings( toDomainList( guestEntity.getBookings() ) );
+        guest.setBookings( bookingEntitySetToBookingSet( guestEntity.getBookings() ) );
         guest.setPreference( guestPreferencesDocumentToGuestPreferences( guestEntity.getPreference() ) );
 
         return guest;
