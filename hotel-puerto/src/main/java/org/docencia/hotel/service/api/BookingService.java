@@ -15,14 +15,14 @@ public interface BookingService {
      * @param id ID de la reserva a buscar
      * @return true si la reserva existe, false en caso contrario
      */
-    boolean existsById(String id);
+    boolean existsById(Long id);
 
     /**
      * Busca y devuelve una reserva por su ID.
      * @param id ID de la reserva a buscar
      * @return la reserva si existe, null en caso contrario
      */
-    Booking findById(String id);
+    Booking findById(Long id);
 
     /**
      * Devuelve un conjunto con todas las reservas registradas.
@@ -42,7 +42,7 @@ public interface BookingService {
      * @param id ID de la reserva a eliminar
      * @return true si la eliminación fue exitosa, false en caso contrario
      */
-    boolean deleteById(String id);
+    boolean deleteById(Long id);
 
     /**
      * Busca una reserva para una habitación específica en un rango de fechas.
@@ -51,5 +51,5 @@ public interface BookingService {
      * @param checkout fecha de salida en formato String
      * @return la reserva encontrada, null si no existe ninguna
      */
-    Booking findByRoomIdAndDateRange(String roomId, String checkin, String checkout);
+    Booking findByRoomIdAndDateRange(Long roomId, String checkin, String checkout);
 }

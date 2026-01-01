@@ -14,14 +14,14 @@ public interface RoomService {
      * @param id ID de la habitación a buscar
      * @return true si la habitación existe, false en caso contrario
      */
-    boolean existsById(String id);
+    boolean existsById(Long id);
 
     /**
      * Busca y devuelve una habitación por su ID.
      * @param id ID de la habitación a buscar
      * @return la habitación si existe, null en caso contrario
      */
-    Room findById(String id);
+    Room findById(Long id);
 
     /**
      * Devuelve un conjunto con todas las habitaciones registradas.
@@ -41,12 +41,12 @@ public interface RoomService {
      * @param id ID de la habitación a eliminar
      * @return true si la eliminación fue exitosa, false en caso contrario
      */
-    boolean deleteById(String id);
+    boolean deleteById(Long id);
 
     /**
      * Busca y devuelve una habitación por el ID del hotel al que pertenece.
      * @param hotelId ID del hotel
      * @return la habitación asociada al hotel, null si no existe
      */
-    Room findByHotelId(String hotelId);
+    Room findByHotelId(Long hotelId);
 }

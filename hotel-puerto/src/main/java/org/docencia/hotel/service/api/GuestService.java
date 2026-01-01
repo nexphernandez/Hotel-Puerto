@@ -14,14 +14,14 @@ public interface GuestService {
      * @param id ID del huésped a buscar
      * @return true si el huésped existe, false en caso contrario
      */
-    boolean existsById(String id);
+    boolean existsById(Long id);
 
     /**
      * Busca y devuelve un huésped por su ID.
      * @param id ID del huésped a buscar
      * @return el huésped si existe, null en caso contrario
      */
-    Guest findById(String id);
+    Guest findById(Long id);
 
     /**
      * Devuelve un conjunto con todos los huéspedes registrados.
@@ -41,5 +41,5 @@ public interface GuestService {
      * @param id ID del huésped a eliminar
      * @return true si la eliminación fue exitosa, false en caso contrario
      */
-    boolean deleteById(String id);
+    boolean deleteById(Long id);
 }

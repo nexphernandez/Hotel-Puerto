@@ -19,7 +19,7 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Long>{
     @Query("SELECT b FROM Booking as b WHERE b.room.id = :roomId " +
            "AND b.fechaSalida > :startDate AND b.fechaEntrada < :endDate")
     Set<Booking> findByRoomIdAndDateRange(
-        @Param("roomId") String roomId, 
+        @Param("roomId") Long roomId, 
         @Param("startDate") String startDate, 
         @Param("endDate") String endDate
     );
