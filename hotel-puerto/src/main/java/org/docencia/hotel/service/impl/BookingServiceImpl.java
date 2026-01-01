@@ -11,6 +11,8 @@ import org.docencia.hotel.mapper.jpa.BookingMapper;
 import org.docencia.hotel.persistence.repository.jpa.BookingRepository;
 import org.docencia.hotel.service.api.BookingService;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 /**
  * @author nexphernandez
  * @version 1.0.0
@@ -43,6 +45,7 @@ public class BookingServiceImpl implements BookingService {
     }
     
     @Override
+    @Transactional
     public boolean deleteById(Long id) {
         if (!repository.existsById(id)) {
             return false;
@@ -52,6 +55,7 @@ public class BookingServiceImpl implements BookingService {
     }
     
     @Override
+    @Transactional
     public Booking save(Booking booking) {
         if (booking.getId() == null) {
             booking.setId(UUID.randomUUID().getLeastSignificantBits());
@@ -61,7 +65,7 @@ public class BookingServiceImpl implements BookingService {
     
     @Override
     public Booking findByRoomIdAndDateRange(Long roomId, String startDate, String endDate) {
-        List<Booking> bookings = new ArrayList<>( repository.findByRoomIdAndDateRange(roomId, startDate, endDate));
+        List<Booking> bookings = new ArrayList<>( mapper.toDomain(repository.findByRoomIdAndDateRange(roomId, startDate, endDate)));
         return bookings.get(0);
     }
     

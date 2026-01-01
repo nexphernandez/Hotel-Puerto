@@ -13,6 +13,12 @@ import org.docencia.hotel.persistence.repository.nosql.GuestPreferencesRepositor
 import org.docencia.hotel.service.api.GuestService;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+/**
+ * @author nexphernandez
+ * @version 1.0.0
+ * Interfaz con los metodos a realizar
+ */
 @Service
 public class GuestServiceImpl implements GuestService {
     private final GuestJpaRepository repository;
@@ -43,6 +49,7 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
+    @Transactional
     public Guest save(Guest guest) {
         if (guest.getId() == null ) {
             guest.setId(UUID.randomUUID().getLeastSignificantBits());
@@ -51,6 +58,7 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
+    @Transactional
     public boolean deleteById(Long id) {
         if (!repository.existsById(id)) {
             return false;
@@ -60,12 +68,14 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
+    @Transactional
     public GuestPreferences savePreferences(Long guestId, GuestPreferences preferences) {
         preferences.setGuestId(guestId);
         return mapperPreferences.toDomain(repositoryPreferences.save(mapperPreferences.toDocument(preferences)));
     }
 
     @Override
+    @Transactional
     public boolean deletePreferenceById(Long guestId) {
         if (!repositoryPreferences.existsById(guestId)) {
             return false;
