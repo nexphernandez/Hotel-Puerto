@@ -3,6 +3,8 @@ package org.docencia.hotel.service.api;
 import java.util.Set;
 
 import org.docencia.hotel.domain.model.Guest;
+import org.docencia.hotel.domain.model.GuestPreferences;
+import org.docencia.hotel.persistence.nosql.document.GuestPreferencesDocument;
 /**
  * @author nexphernandez
  * @version 1.0.0
@@ -42,4 +44,12 @@ public interface GuestService {
      * @return true si la eliminación fue exitosa, false en caso contrario
      */
     boolean deleteById(Long id);
+
+    /**
+     * Funcion que guarda las preferencias del cliente sabiendo su identificador
+     * @param Id identificador del cliente
+     * @param preferences preferencias del cliente
+     * @return preferencias guardadas/null
+     */
+    GuestPreferences save(Long Id, GuestPreferencesDocument preferences);
 }
