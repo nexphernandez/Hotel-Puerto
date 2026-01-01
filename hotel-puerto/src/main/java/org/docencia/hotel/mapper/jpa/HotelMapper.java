@@ -1,5 +1,7 @@
 package org.docencia.hotel.mapper.jpa;
 
+import java.util.Set;
+
 import org.docencia.hotel.domain.model.Hotel;
 import org.docencia.hotel.persistence.jpa.entity.HotelEntity;
 import org.mapstruct.Mapper;
@@ -13,4 +15,8 @@ public interface HotelMapper {
     
     @Mapping(target = "rooms",  ignore= true)
     Hotel toDomain(HotelEntity entity);
+
+    Set<Hotel> toDomain(Set<HotelEntity> bookings);
+
+    Set<HotelEntity> toEntity(Set<Hotel> bookings);
 }

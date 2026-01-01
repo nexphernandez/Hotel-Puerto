@@ -1,5 +1,7 @@
 package org.docencia.hotel.mapper.jpa;
 
+import java.util.Set;
+
 import org.docencia.hotel.domain.model.Guest;
 import org.docencia.hotel.mapper.nosql.GuestPreferencesMapper;
 import org.docencia.hotel.persistence.jpa.entity.GuestEntity;
@@ -24,4 +26,8 @@ public interface GuestMapper {
     @Mapping(target = "preference", source = "guest")
     @Mapping(target = "bookings", ignore = true)
     Guest toDomain(GuestEntity entity, GuestPreferencesDocument guest);
+
+    Set<Guest> toDomain(Set<GuestEntity> bookings);
+
+    Set<GuestEntity> toEntity(Set<Guest> bookings);
 }

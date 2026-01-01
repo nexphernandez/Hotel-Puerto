@@ -1,5 +1,7 @@
 package org.docencia.hotel.mapper.jpa;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.docencia.hotel.domain.model.Guest;
 import org.docencia.hotel.mapper.nosql.GuestPreferencesMapper;
@@ -10,8 +12,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-29T13:19:49+0000",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23 (Oracle Corporation)"
+    date = "2026-01-01T17:37:33+0000",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251118-1623, environment: Java 21.0.9 (Eclipse Adoptium)"
 )
 @Component
 public class GuestMapperImpl implements GuestMapper {
@@ -70,5 +72,33 @@ public class GuestMapperImpl implements GuestMapper {
         guest1.setPreference( guestPreferencesMapper.toDomain( guest ) );
 
         return guest1;
+    }
+
+    @Override
+    public Set<Guest> toDomain(Set<GuestEntity> bookings) {
+        if ( bookings == null ) {
+            return null;
+        }
+
+        Set<Guest> set = new LinkedHashSet<Guest>( Math.max( (int) ( bookings.size() / .75f ) + 1, 16 ) );
+        for ( GuestEntity guestEntity : bookings ) {
+            set.add( toDomain( guestEntity ) );
+        }
+
+        return set;
+    }
+
+    @Override
+    public Set<GuestEntity> toEntity(Set<Guest> bookings) {
+        if ( bookings == null ) {
+            return null;
+        }
+
+        Set<GuestEntity> set = new LinkedHashSet<GuestEntity>( Math.max( (int) ( bookings.size() / .75f ) + 1, 16 ) );
+        for ( Guest guest : bookings ) {
+            set.add( toEntity( guest ) );
+        }
+
+        return set;
     }
 }

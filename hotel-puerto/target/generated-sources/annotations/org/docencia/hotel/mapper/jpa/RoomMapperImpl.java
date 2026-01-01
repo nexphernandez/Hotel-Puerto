@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-29T13:19:49+0000",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 23 (Oracle Corporation)"
+    date = "2026-01-01T17:38:28+0000",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251118-1623, environment: Java 21.0.9 (Eclipse Adoptium)"
 )
 @Component
 public class RoomMapperImpl implements RoomMapper {
@@ -51,17 +51,32 @@ public class RoomMapperImpl implements RoomMapper {
         return room;
     }
 
-    protected Set<RoomEntity> roomSetToRoomEntitySet(Set<Room> set) {
-        if ( set == null ) {
+    @Override
+    public Set<Room> toDomain(Set<RoomEntity> bookings) {
+        if ( bookings == null ) {
             return null;
         }
 
-        Set<RoomEntity> set1 = new LinkedHashSet<RoomEntity>( Math.max( (int) ( set.size() / .75f ) + 1, 16 ) );
-        for ( Room room : set ) {
-            set1.add( toEntity( room ) );
+        Set<Room> set = new LinkedHashSet<Room>( Math.max( (int) ( bookings.size() / .75f ) + 1, 16 ) );
+        for ( RoomEntity roomEntity : bookings ) {
+            set.add( toDomain( roomEntity ) );
         }
 
-        return set1;
+        return set;
+    }
+
+    @Override
+    public Set<RoomEntity> toEntity(Set<Room> bookings) {
+        if ( bookings == null ) {
+            return null;
+        }
+
+        Set<RoomEntity> set = new LinkedHashSet<RoomEntity>( Math.max( (int) ( bookings.size() / .75f ) + 1, 16 ) );
+        for ( Room room : bookings ) {
+            set.add( toEntity( room ) );
+        }
+
+        return set;
     }
 
     protected HotelEntity hotelToHotelEntity(Hotel hotel) {
@@ -74,22 +89,9 @@ public class RoomMapperImpl implements RoomMapper {
         hotelEntity.setId( hotel.getId() );
         hotelEntity.setName( hotel.getName() );
         hotelEntity.setAddress( hotel.getAddress() );
-        hotelEntity.setRooms( roomSetToRoomEntitySet( hotel.getRooms() ) );
+        hotelEntity.setRooms( toEntity( hotel.getRooms() ) );
 
         return hotelEntity;
-    }
-
-    protected Set<Room> roomEntitySetToRoomSet(Set<RoomEntity> set) {
-        if ( set == null ) {
-            return null;
-        }
-
-        Set<Room> set1 = new LinkedHashSet<Room>( Math.max( (int) ( set.size() / .75f ) + 1, 16 ) );
-        for ( RoomEntity roomEntity : set ) {
-            set1.add( toDomain( roomEntity ) );
-        }
-
-        return set1;
     }
 
     protected Hotel hotelEntityToHotel(HotelEntity hotelEntity) {
@@ -102,7 +104,7 @@ public class RoomMapperImpl implements RoomMapper {
         hotel.setId( hotelEntity.getId() );
         hotel.setName( hotelEntity.getName() );
         hotel.setAddress( hotelEntity.getAddress() );
-        hotel.setRooms( roomEntitySetToRoomSet( hotelEntity.getRooms() ) );
+        hotel.setRooms( toDomain( hotelEntity.getRooms() ) );
 
         return hotel;
     }
