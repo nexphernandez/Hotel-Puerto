@@ -3,7 +3,11 @@ package org.docencia.hotel.service.api;
 import java.util.Set;
 
 import org.docencia.hotel.domain.model.Room;
-
+/**
+ * @author nexphernandez
+ * @version 1.0.0
+ * Interfaz con los metodos a realizar
+ */
 public interface RoomService {
     /**
      * Comprueba si existe una habitación con el ID especificado.

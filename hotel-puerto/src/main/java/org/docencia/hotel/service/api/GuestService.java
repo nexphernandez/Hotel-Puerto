@@ -3,7 +3,11 @@ package org.docencia.hotel.service.api;
 import java.util.Set;
 
 import org.docencia.hotel.domain.model.Guest;
-
+/**
+ * @author nexphernandez
+ * @version 1.0.0
+ * Interfaz con los metodos a realizar
+ */
 public interface GuestService {
      /**
      * Comprueba si existe un huésped con el ID especificado.

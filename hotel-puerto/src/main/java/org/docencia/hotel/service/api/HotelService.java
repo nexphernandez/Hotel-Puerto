@@ -3,7 +3,11 @@ package org.docencia.hotel.service.api;
 import java.util.Set;
 
 import org.docencia.hotel.domain.model.Hotel;
-
+/**
+ * @author nexphernandez
+ * @version 1.0.0
+ * Interfaz con los metodos a realizar
+ */
 public interface HotelService {
         /**
      * Comprueba si existe un hotel con el ID especificado.
