@@ -7,8 +7,9 @@ import java.util.UUID;
 import org.docencia.hotel.domain.model.Guest;
 import org.docencia.hotel.domain.model.GuestPreferences;
 import org.docencia.hotel.mapper.jpa.GuestMapper;
-import org.docencia.hotel.persistence.nosql.document.GuestPreferencesDocument;
+import org.docencia.hotel.mapper.nosql.GuestPreferencesMapper;
 import org.docencia.hotel.persistence.repository.jpa.GuestJpaRepository;
+import org.docencia.hotel.persistence.repository.nosql.GuestPreferencesRepository;
 import org.docencia.hotel.service.api.GuestService;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,15 @@ import org.springframework.stereotype.Service;
 public class GuestServiceImpl implements GuestService {
     private final GuestJpaRepository repository;
     private final GuestMapper mapper;
+    private final GuestPreferencesMapper mapperPreferences;
+    private final GuestPreferencesRepository repositoryPreferences;
     
-    public GuestServiceImpl(GuestJpaRepository repository, GuestMapper mapper) {
+    public GuestServiceImpl(GuestJpaRepository repository, GuestMapper mapper,
+        GuestPreferencesRepository repositoryPreferences, GuestPreferencesMapper mapperPreferences) {
         this.repository = repository;
         this.mapper = mapper;
+        this.mapperPreferences = mapperPreferences;
+        this.repositoryPreferences = repositoryPreferences;
     }
     @Override
     public boolean existsById(Long id) {
@@ -45,17 +51,31 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
-    public GuestPreferences save(Long Id, GuestPreferencesDocument preferences) {
-        preferences.setGuestId(Id);
-        return mapper.toDomain(repository.save(preferences));
-    }
-
-    @Override
     public boolean deleteById(Long id) {
         if (!repository.existsById(id)) {
             return false;
         }
         repository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public GuestPreferences savePreferences(Long guestId, GuestPreferences preferences) {
+        preferences.setGuestId(guestId);
+        return mapperPreferences.toDomain(repositoryPreferences.save(mapperPreferences.toDocument(preferences)));
+    }
+
+    @Override
+    public boolean deletePreferenceById(Long guestId) {
+        if (!repositoryPreferences.existsById(guestId)) {
+            return false;
+        }
+        repositoryPreferences.deleteById(guestId);
+        return true;
+    }
+
+    @Override
+    public GuestPreferences findPreferenceById(Long guestId) {
+        return mapperPreferences.toDomain(repositoryPreferences.findById(guestId).orElse(null));
     }
 }

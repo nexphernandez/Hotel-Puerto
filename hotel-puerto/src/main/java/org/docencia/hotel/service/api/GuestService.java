@@ -4,7 +4,6 @@ import java.util.Set;
 
 import org.docencia.hotel.domain.model.Guest;
 import org.docencia.hotel.domain.model.GuestPreferences;
-import org.docencia.hotel.persistence.nosql.document.GuestPreferencesDocument;
 /**
  * @author nexphernandez
  * @version 1.0.0
@@ -47,9 +46,25 @@ public interface GuestService {
 
     /**
      * Funcion que guarda las preferencias del cliente sabiendo su identificador
-     * @param Id identificador del cliente
+     * @param guestId identificador del cliente
      * @param preferences preferencias del cliente
      * @return preferencias guardadas/null
      */
-    GuestPreferences save(Long Id, GuestPreferencesDocument preferences);
+    GuestPreferences savePreferences(Long guestId, GuestPreferences preferences);
+
+    /**
+     * Elimina las preferencias de un huésped por su ID.
+     * @param guestId ID del huésped a eliminar
+     * @return true si la eliminación fue exitosa, false en caso contrario
+     */
+    boolean deletePreferenceById(Long guestId);
+
+    /**
+     * Busca y devuelve las preferencias un huésped por su ID.
+     * @param guestId ID del huésped a buscar
+     * @return preferencias del huésped si existe, null en caso contrario
+     */
+    GuestPreferences findPreferenceById(Long guestId);
+
+
 }
