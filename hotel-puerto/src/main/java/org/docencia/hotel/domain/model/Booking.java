@@ -3,6 +3,10 @@ package org.docencia.hotel.domain.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import org.docencia.hotel.web.soap.LocalDateAdapter;
+
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 /**
  * @author nexphernandez
  * @version 1.0.0
@@ -14,8 +18,10 @@ public class Booking {
 
     private Guest guest;
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate checkIn;
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate checkOut;
 
     /**
