@@ -52,7 +52,7 @@ public class GuestController{
         @ApiResponse(responseCode = "200", description = "Huesped creado correctamente"),
         @ApiResponse(responseCode = "400", description = "No se pudo guardar el huesped")
     })
-    @PostMapping("/add/")
+    @PostMapping("/add")
     public ResponseEntity<Guest> save(@Valid @RequestBody Guest guest) {
         Guest guestSaved = guestDomain.save(guest);
         if (guestSaved == null) {
@@ -76,21 +76,24 @@ public class GuestController{
     public Map<String, Boolean> deleteById(@PathVariable(value = "id") Long id) {
         boolean respuesta = guestDomain.deleteById(id);
         Map<String,Boolean> response = new HashMap<>();
-        if (respuesta == false) {
-            response.put("borrado", Boolean.FALSE);
-        }
-        response.put("borrado", Boolean.TRUE);
+        response.put("borrado", respuesta);
         return response;
 
     }
 
     @Operation(summary = "Guardar preferencias del huésped")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "preferencias creadoas correctamente"),
-        @ApiResponse(responseCode = "400", description = "No se pudo guardar las preferencias")
+        @ApiResponse(responseCode = "200", description = "preferencias creadas correctamente"),
+        @ApiResponse(responseCode = "400", description = "No se pudo guardar las preferencias"),
+        @ApiResponse(responseCode = "404", description = "No existe el huesped para guardar las preferencias")
+        
     })
-    @PostMapping("/add/preferences/")
-    public ResponseEntity<GuestPreferences> savePreferences(@Valid @RequestBody Long guestId,@Valid @RequestBody GuestPreferences preferences) {
+    @PostMapping("/add/preferences/{guestId}")
+    public ResponseEntity<GuestPreferences> savePreferences(@PathVariable Long guestId,@Valid @RequestBody GuestPreferences preferences) {
+        boolean existe = guestDomain.existsById(guestId);
+        if(!existe){
+            return  ResponseEntity.notFound().build();
+        }
         GuestPreferences preferencesSaved = guestDomain.savePreferences(guestId, preferences);
         if (preferencesSaved == null) {
             return  ResponseEntity.badRequest().build();
@@ -103,14 +106,11 @@ public class GuestController{
             @ApiResponse(responseCode = "200", description = "preferencias borradas correctamente"),
             @ApiResponse(responseCode = "404", description = "preferencias no encontradas")
     })    
-    @DeleteMapping("/preferences/{id}")
-    public Map<String, Boolean> deletePreferenceById(Long guestId) {
+    @DeleteMapping("/preferences/{guestId}")
+    public Map<String, Boolean> deletePreferenceById(@PathVariable Long guestId) {
         boolean respuesta = guestDomain.deletePreferenceById(guestId);
         Map<String,Boolean> response = new HashMap<>();
-        if (respuesta == false) {
-            response.put("borrado", Boolean.FALSE);
-        }
-        response.put("borrado", Boolean.TRUE);
+        response.put("borrado", respuesta);
         return response;
     }
 
@@ -119,8 +119,8 @@ public class GuestController{
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "preferencias no encontradas")
     })
-    @GetMapping("/{id}")
-    public ResponseEntity<GuestPreferences> findPreferenceById(Long guestId) {
+    @GetMapping("/preferences/{guestId}")
+    public ResponseEntity<GuestPreferences> findPreferenceById(@PathVariable Long guestId) {
         GuestPreferences preferences = guestDomain.findPreferenceById(guestId);
         if (preferences == null) {
             return ResponseEntity.notFound().build();
