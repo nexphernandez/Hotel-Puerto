@@ -2,7 +2,10 @@ package org.docencia.hotel.config;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
+import org.docencia.hotel.web.soap.impl.BookingSoapServiceImpl;
 import org.docencia.hotel.web.soap.impl.GuestSoapServiceImpl;
+import org.docencia.hotel.web.soap.impl.HotelSoapServiceImpl;
+import org.docencia.hotel.web.soap.impl.RoomSoapServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,11 +13,46 @@ import jakarta.xml.ws.Endpoint;
 
 @Configuration
 public class CxfConfig {
+    private final BookingSoapServiceImpl bookingSoapEndPoint;
+    private final RoomSoapServiceImpl roomSoapEndPoint;
+    private final GuestSoapServiceImpl guestSoapEndPoint;
+    private final HotelSoapServiceImpl hotelSoapEndPoint;
+    private final Bus bus;
+
+    public CxfConfig(BookingSoapServiceImpl bookingSoapEndPoint, Bus bus, GuestSoapServiceImpl guestSoapEndPoint, HotelSoapServiceImpl hotelSoapEndPoint, RoomSoapServiceImpl roomSoapEndPoint) {
+        this.bookingSoapEndPoint = bookingSoapEndPoint;
+        this.bus = bus;
+        this.guestSoapEndPoint = guestSoapEndPoint;
+        this.hotelSoapEndPoint = hotelSoapEndPoint;
+        this.roomSoapEndPoint = roomSoapEndPoint;
+    }
+
 
     @Bean
-    public Endpoint guestEndpoint(Bus bus, GuestSoapServiceImpl impl) {
-        EndpointImpl endpoint = new EndpointImpl(bus, impl);
+    public Endpoint guestEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, guestSoapEndPoint);
         endpoint.publish("/guest");
+        return endpoint;
+    }
+
+    @Bean
+    public Endpoint bookingEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, bookingSoapEndPoint);
+        endpoint.publish("/booking");
+        return endpoint;
+    }
+
+    @Bean
+    public Endpoint hotelEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, hotelSoapEndPoint);
+        endpoint.publish("/hotel");
+        return endpoint;
+    }
+
+    @Bean
+    public Endpoint roomEndpoint() {
+        EndpointImpl endpoint = new EndpointImpl(bus, roomSoapEndPoint);
+        endpoint.publish("/room");
         return endpoint;
     }
 }
