@@ -1,5 +1,69 @@
 package org.docencia.hotel.domain.api;
 
+import java.util.Set;
+
+import org.docencia.hotel.domain.model.Guest;
+import org.docencia.hotel.domain.model.GuestPreferences;
+/**
+ * @author nexphernandez
+ * @version 1.0.0
+ * Interfaz con los metodos a realizar
+ */
 public interface GuestDomain {
-    // TODO
+    /**
+     * Comprueba si existe un huésped con el ID especificado.
+     * @param id ID del huésped a buscar
+     * @return true si el huésped existe, false en caso contrario
+     */
+    boolean existsById(Long id);
+
+    /**
+     * Busca y devuelve un huésped por su ID.
+     * @param id ID del huésped a buscar
+     * @return el huésped si existe, null en caso contrario
+     */
+    Guest findById(Long id);
+
+    /**
+     * Devuelve un conjunto con todos los huéspedes registrados.
+     * @return conjunto de todos los huéspedes
+     */
+    Set<Guest> findAll();
+
+    /**
+     * Guarda un huésped nuevo o actualiza uno existente.
+     * @param guest huésped a guardar o actualizar
+     * @return el huésped guardado o actualizado
+     */
+    Guest save(Guest guest);
+
+    /**
+     * Elimina un huésped por su ID.
+     * @param id ID del huésped a eliminar
+     * @return true si la eliminación fue exitosa, false en caso contrario
+     */
+    boolean deleteById(Long id);
+
+    /**
+     * Funcion que guarda las preferencias del cliente sabiendo su identificador
+     * @param guestId identificador del cliente
+     * @param preferences preferencias del cliente
+     * @return preferencias guardadas/null
+     */
+    GuestPreferences savePreferences(Long guestId, GuestPreferences preferences);
+
+    /**
+     * Elimina las preferencias de un huésped por su ID.
+     * @param guestId ID del huésped a eliminar
+     * @return true si la eliminación fue exitosa, false en caso contrario
+     */
+    boolean deletePreferenceById(Long guestId);
+
+    /**
+     * Busca y devuelve las preferencias un huésped por su ID.
+     * @param guestId ID del huésped a buscar
+     * @return preferencias del huésped si existe, null en caso contrario
+     */
+    GuestPreferences findPreferenceById(Long guestId);
+
 }
