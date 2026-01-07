@@ -1,5 +1,6 @@
 package org.docencia.hotel.service.api;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.docencia.hotel.domain.model.Booking;
@@ -51,5 +52,5 @@ public interface BookingService {
      * @param checkout fecha de salida en formato String
      * @return la reserva encontrada, null si no existe ninguna
      */
-    Booking findByRoomIdAndDateRange(Long roomId, String checkin, String checkout);
+    Booking findByRoomIdAndDateRange(Long roomId, LocalDate checkin, LocalDate checkout);
 }

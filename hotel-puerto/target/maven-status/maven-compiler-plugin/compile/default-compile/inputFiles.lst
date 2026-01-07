@@ -36,6 +36,7 @@ E:\Nicolas\Documents\Hotel-Puerto\hotel-puerto\src\main\java\org\docencia\hotel\
 E:\Nicolas\Documents\Hotel-Puerto\hotel-puerto\src\main\java\org\docencia\hotel\service\impl\GuestServiceImpl.java
 E:\Nicolas\Documents\Hotel-Puerto\hotel-puerto\src\main\java\org\docencia\hotel\service\impl\HotelServiceImpl.java
 E:\Nicolas\Documents\Hotel-Puerto\hotel-puerto\src\main\java\org\docencia\hotel\service\impl\RoomServiceImpl.java
+E:\Nicolas\Documents\Hotel-Puerto\hotel-puerto\src\main\java\org\docencia\hotel\web\rest\BookingController.java
 E:\Nicolas\Documents\Hotel-Puerto\hotel-puerto\src\main\java\org\docencia\hotel\web\rest\GuestController.java
 E:\Nicolas\Documents\Hotel-Puerto\hotel-puerto\src\main\java\org\docencia\hotel\web\soap\GuestSoapService.java
 E:\Nicolas\Documents\Hotel-Puerto\hotel-puerto\src\main\java\org\docencia\hotel\web\soap\GuestSoapServiceImpl.java

@@ -1,5 +1,6 @@
 package org.docencia.hotel.persistence.repository.jpa;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.docencia.hotel.persistence.jpa.entity.BookingEntity;
@@ -19,7 +20,7 @@ public interface BookingRepository extends JpaRepository<BookingEntity, Long>{
     "AND b.checkOut > :checkIn AND b.checkIn < :checkOut")
     Set<BookingEntity> findByRoomIdAndDateRange(
         @Param("roomId") Long roomId, 
-        @Param("checkIn") String checkIn, 
-        @Param("checkOut") String checkOut
+        @Param("checkIn") LocalDate checkIn, 
+        @Param("checkOut") LocalDate checkOut
     );
 }

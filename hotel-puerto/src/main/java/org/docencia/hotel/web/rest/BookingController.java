@@ -1,10 +1,12 @@
 package org.docencia.hotel.web.rest;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 import org.docencia.hotel.domain.api.BookingDomain;
 import org.docencia.hotel.domain.model.Booking;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -84,7 +86,9 @@ public class BookingController{
             @ApiResponse(responseCode = "404", description = "reserva no encontrado")
     })
     @GetMapping("/range")
-    public ResponseEntity<Booking> findByRoomIdAndDateRange(@RequestParam Long roomId,@RequestParam String checkin,@RequestParam String checkout){
+    public ResponseEntity<Booking> findByRoomIdAndDateRange(@RequestParam Long roomId,
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkin,
+        @RequestParam  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkout){
         Booking booking = bookingDomain.findByRoomIdAndDateRange(roomId, checkin, checkout);
         if (booking == null) {
             return ResponseEntity.notFound().build();

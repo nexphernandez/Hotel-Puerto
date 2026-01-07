@@ -1,5 +1,6 @@
 package org.docencia.hotel.service.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -64,7 +65,7 @@ public class BookingServiceImpl implements BookingService {
     }
     
     @Override
-    public Booking findByRoomIdAndDateRange(Long roomId, String startDate, String endDate) {
+    public Booking findByRoomIdAndDateRange(Long roomId, LocalDate startDate, LocalDate endDate) {
         List<Booking> bookings = new ArrayList<>( mapper.toDomain(repository.findByRoomIdAndDateRange(roomId, startDate, endDate)));
         return bookings.get(0);
     }

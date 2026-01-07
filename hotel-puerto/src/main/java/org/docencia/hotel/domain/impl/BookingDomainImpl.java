@@ -1,5 +1,6 @@
 package org.docencia.hotel.domain.impl;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.docencia.hotel.domain.api.BookingDomain;
@@ -46,7 +47,7 @@ public class BookingDomainImpl implements BookingDomain {
     }
 
     @Override
-    public Booking findByRoomIdAndDateRange(Long roomId, String checkin, String checkout) {
+    public Booking findByRoomIdAndDateRange(Long roomId, LocalDate checkin, LocalDate checkout) {
         return service.findByRoomIdAndDateRange(roomId, checkin, checkout);
     }
 }
