@@ -1,7 +1,11 @@
 package org.docencia.hotel.web.soap.impl;
 
-import org.docencia.hotel.domain.api.GuestDomain;
-import org.docencia.hotel.web.soap.GuestSoapService;
+import java.time.LocalDate;
+import java.util.Set;
+
+import org.docencia.hotel.domain.api.BookingDomain;
+import org.docencia.hotel.domain.model.Booking;
+import org.docencia.hotel.web.soap.BookingSoapService;
 import org.springframework.stereotype.Service;
 
 import jakarta.jws.WebService;
@@ -13,11 +17,36 @@ import jakarta.jws.WebService;
         serviceName = "BookingSoapService",
         portName = "BookingSoapPort"
 )
-public class BookingSoapServiceImpl implements GuestSoapService {
+public class BookingSoapServiceImpl implements BookingSoapService {
 
-    private final GuestDomain guestDomain;
+    private final BookingDomain bookingDomain;
 
-    public GuestSoapServiceImpl(GuestDomain guestDomain) {
-        this.guestDomain = guestDomain;
+    public BookingSoapServiceImpl(BookingDomain bookingDomain) {
+        this.bookingDomain = bookingDomain;
+    }
+
+    @Override
+    public Booking getBookingById(Long id) {
+        return bookingDomain.findById(id);
+    }
+
+    @Override
+    public Booking saveBooking(Booking booking) {
+        return bookingDomain.save(booking);
+    }
+
+    @Override
+    public Set<Booking> findAllBooking() {
+        return bookingDomain.findAll();
+    }
+
+    @Override
+    public boolean deleteBookingById(Long id) {
+        return bookingDomain.deleteById(id);
+    }
+
+    @Override
+    public Booking findByRoomIdAndDateRange(Long roomId, LocalDate checkin, LocalDate checkout) {
+        return bookingDomain.findByRoomIdAndDateRange(roomId, checkin, checkout);
     }
 }
