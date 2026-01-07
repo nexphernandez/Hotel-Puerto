@@ -22,13 +22,11 @@ public class BookingDomainImpl implements BookingDomain {
 
     @Override
     public boolean existsById(Long id) {
-        verificarId(id);
         return  service.existsById(id);
     }
 
     @Override
     public Booking findById(Long id) {
-        verificarId(id);
         return service.findById(id);
     }
 
@@ -39,28 +37,16 @@ public class BookingDomainImpl implements BookingDomain {
 
     @Override
     public Booking save(Booking booking) {
-        if (booking == null) {
-            throw new IllegalArgumentException("La reserva no puede ser nula");
-        }
-        verificarId(booking.getId());
         return service.save(booking);
     }
 
     @Override
     public boolean deleteById(Long id) {
-        verificarId(id);
         return service.deleteById(id);
     }
 
     @Override
     public Booking findByRoomIdAndDateRange(Long roomId, String checkin, String checkout) {
-        verificarId(roomId);
         return service.findByRoomIdAndDateRange(roomId, checkin, checkout);
-    }
-
-    public void verificarId (Long id){
-        if (id == null) {
-            throw new IllegalArgumentException("El id no puede ser nulo");
-        }
     }
 }

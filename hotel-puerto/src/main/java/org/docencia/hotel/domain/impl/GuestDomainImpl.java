@@ -23,13 +23,11 @@ public class GuestDomainImpl implements GuestDomain {
 
     @Override
     public boolean existsById(Long id) {
-        verificarId(id);
         return service.existsById(id);
     }
 
     @Override
     public Guest findById(Long id) {
-        verificarId(id);
         return service.findById(id);
     }
 
@@ -40,40 +38,26 @@ public class GuestDomainImpl implements GuestDomain {
 
     @Override
     public Guest save(Guest guest) {
-        if (guest == null) {
-            throw new IllegalArgumentException("El cliente no puede ser nulo");        
-        }
-        verificarId(guest.getId());
         return service.save(guest);
     }
 
     @Override
     public boolean deleteById(Long id) {
-        verificarId(id);
         return service.deleteById(id);
     }
 
     @Override
     public GuestPreferences savePreferences(Long guestId, GuestPreferences preferences) {
-        verificarId(guestId);
         return service.savePreferences(guestId, preferences);
     }
 
     @Override
     public boolean deletePreferenceById(Long guestId) {
-        verificarId(guestId);
         return service.deletePreferenceById(guestId);
     }
 
     @Override
     public GuestPreferences findPreferenceById(Long guestId) {
-        verificarId(guestId);
         return service.findPreferenceById(guestId);
-    }
-
-    public void verificarId (Long id){
-        if (id == null) {
-            throw new IllegalArgumentException("El id no puede ser nulo");
-        }
     }
 }

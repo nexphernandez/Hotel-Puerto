@@ -20,21 +20,13 @@ public class HotelDomainImpl implements HotelDomain {
         this.service = service;
     }
 
-    public void verificarId (Long id){
-        if (id == null) {
-            throw new IllegalArgumentException("El id no puede ser nulo");
-        }
-    }
-
     @Override
     public boolean existsById(Long id) {
-        verificarId(id);
         return service.existsById(id);
     }
 
     @Override
     public Hotel findById(Long id) {
-        verificarId(id);
         return service.findById(id);
     }
 
@@ -45,16 +37,11 @@ public class HotelDomainImpl implements HotelDomain {
 
     @Override
     public Hotel save(Hotel hotel) {
-        if (hotel == null) {
-            throw new IllegalArgumentException("El hotel no puede ser nulo");   
-        }
-        verificarId(hotel.getId());
         return service.save(hotel);
     }
 
     @Override
     public boolean deleteById(Long id) {
-        verificarId(id);
         return service.deleteById(id);
     }
 }
