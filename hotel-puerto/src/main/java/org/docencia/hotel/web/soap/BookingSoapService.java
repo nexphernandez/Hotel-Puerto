@@ -1,5 +1,8 @@
 package org.docencia.hotel.web.soap;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 import org.docencia.hotel.domain.model.Booking;
 
 import jakarta.jws.WebMethod;
@@ -17,7 +20,22 @@ public interface BookingSoapService {
     @WebResult(name = "booking")
     Booking getBookingById(@WebParam(name = "id") Long id);
 
-    @WebMethod(operationName = "saveBooking")
+    @WebMethod(operationName = "SaveBooking")
     @WebResult(name = "booking")
     Booking saveBooking(@WebParam(name = "booking") Booking booking);
+
+    @WebMethod(operationName = "FindAllBookings")
+    @WebResult(name = "bookings")
+    Set<Booking> findAllBooking();
+
+    @WebMethod(operationName = "DeleteBookingById")
+    @WebResult(name = "success")
+    boolean deleteBookingById(@WebParam(name = "id") Long id);
+
+    @WebMethod(operationName = "GetBookingByRoomAndDates")
+    @WebResult(name = "booking")
+    Booking findByRoomIdAndDateRange(@WebParam(name = "id") Long roomId,
+    @WebParam(name = "checkin") LocalDate checkin, @WebParam(name = "checkout") LocalDate checkout);
+ 
+
 }
