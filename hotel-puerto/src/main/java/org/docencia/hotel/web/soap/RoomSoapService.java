@@ -1,5 +1,7 @@
 package org.docencia.hotel.web.soap;
 
+import java.util.Set;
+
 import org.docencia.hotel.domain.model.Room;
 
 import jakarta.jws.WebMethod;
@@ -20,4 +22,12 @@ public interface RoomSoapService {
     @WebMethod(operationName = "SaveRoom")
     @WebResult(name = "room")
     Room saveRoom(@WebParam(name = "room") Room room);
+
+    @WebMethod(operationName = "FindAllRooms")
+    @WebResult(name = "rooms")
+    Set<Room> findAllRooms();
+
+    @WebMethod(operationName = "DeleteRoomById")
+    @WebResult(name = "success")
+    boolean deleteRoomById(@WebParam(name = "id") Long id);
 }

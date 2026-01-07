@@ -8,12 +8,12 @@ import jakarta.jws.WebService;
 
 @Service
 @WebService(
-        endpointInterface = "org.docencia.hotel.web.soap.GuestSoapService",
+        endpointInterface = "org.docencia.hotel.web.soap.BookingSoapService",
         targetNamespace = "http://hotel.docencia.org/ws",
-        serviceName = "GuestSoapService",
-        portName = "GuestSoapPort"
+        serviceName = "BookingSoapService",
+        portName = "BookingSoapPort"
 )
-public class GuestSoapServiceImpl implements GuestSoapService {
+public class BookingSoapServiceImpl implements GuestSoapService {
 
     private final GuestDomain guestDomain;
 
