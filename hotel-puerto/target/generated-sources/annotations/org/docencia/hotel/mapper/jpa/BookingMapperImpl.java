@@ -1,26 +1,22 @@
 package org.docencia.hotel.mapper.jpa;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.docencia.hotel.domain.model.Booking;
 import org.docencia.hotel.domain.model.Guest;
-import org.docencia.hotel.domain.model.GuestPreferences;
 import org.docencia.hotel.domain.model.Hotel;
 import org.docencia.hotel.domain.model.Room;
 import org.docencia.hotel.persistence.jpa.entity.BookingEntity;
 import org.docencia.hotel.persistence.jpa.entity.GuestEntity;
 import org.docencia.hotel.persistence.jpa.entity.HotelEntity;
 import org.docencia.hotel.persistence.jpa.entity.RoomEntity;
-import org.docencia.hotel.persistence.nosql.document.GuestPreferencesDocument;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-01-07T23:32:46+0000",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.45.0.v20260101-2150, environment: Java 21.0.9 (Eclipse Adoptium)"
+    date = "2026-01-09T15:31:29+0000",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.15 (Ubuntu)"
 )
 @Component
 public class BookingMapperImpl implements BookingMapper {
@@ -132,26 +128,6 @@ public class BookingMapperImpl implements BookingMapper {
         return roomEntity;
     }
 
-    protected GuestPreferencesDocument guestPreferencesToGuestPreferencesDocument(GuestPreferences guestPreferences) {
-        if ( guestPreferences == null ) {
-            return null;
-        }
-
-        GuestPreferencesDocument guestPreferencesDocument = new GuestPreferencesDocument();
-
-        guestPreferencesDocument.setGuestId( guestPreferences.getGuestId() );
-        guestPreferencesDocument.setPreferredLanguage( guestPreferences.getPreferredLanguage() );
-        guestPreferencesDocument.setNewsLetterOptIn( guestPreferences.getNewsLetterOptIn() );
-        List<String> list = guestPreferences.getTags();
-        if ( list != null ) {
-            guestPreferencesDocument.setTags( new ArrayList<String>( list ) );
-        }
-        guestPreferencesDocument.setFavoriteRoomType( guestPreferences.getFavoriteRoomType() );
-        guestPreferencesDocument.setNotes( guestPreferences.getNotes() );
-
-        return guestPreferencesDocument;
-    }
-
     protected GuestEntity guestToGuestEntity(Guest guest) {
         if ( guest == null ) {
             return null;
@@ -164,7 +140,6 @@ public class BookingMapperImpl implements BookingMapper {
         guestEntity.setEmail( guest.getEmail() );
         guestEntity.setPhone( guest.getPhone() );
         guestEntity.setBookings( toEntity( guest.getBookings() ) );
-        guestEntity.setPreference( guestPreferencesToGuestPreferencesDocument( guest.getPreference() ) );
 
         return guestEntity;
     }
@@ -214,26 +189,6 @@ public class BookingMapperImpl implements BookingMapper {
         return room;
     }
 
-    protected GuestPreferences guestPreferencesDocumentToGuestPreferences(GuestPreferencesDocument guestPreferencesDocument) {
-        if ( guestPreferencesDocument == null ) {
-            return null;
-        }
-
-        GuestPreferences guestPreferences = new GuestPreferences();
-
-        guestPreferences.setGuestId( guestPreferencesDocument.getGuestId() );
-        guestPreferences.setPreferredLanguage( guestPreferencesDocument.getPreferredLanguage() );
-        guestPreferences.setNewsLetterOptIn( guestPreferencesDocument.getNewsLetterOptIn() );
-        List<String> list = guestPreferencesDocument.getTags();
-        if ( list != null ) {
-            guestPreferences.setTags( new ArrayList<String>( list ) );
-        }
-        guestPreferences.setFavoriteRoomType( guestPreferencesDocument.getFavoriteRoomType() );
-        guestPreferences.setNotes( guestPreferencesDocument.getNotes() );
-
-        return guestPreferences;
-    }
-
     protected Guest guestEntityToGuest(GuestEntity guestEntity) {
         if ( guestEntity == null ) {
             return null;
@@ -246,7 +201,6 @@ public class BookingMapperImpl implements BookingMapper {
         guest.setEmail( guestEntity.getEmail() );
         guest.setPhone( guestEntity.getPhone() );
         guest.setBookings( toDomain( guestEntity.getBookings() ) );
-        guest.setPreference( guestPreferencesDocumentToGuestPreferences( guestEntity.getPreference() ) );
 
         return guest;
     }

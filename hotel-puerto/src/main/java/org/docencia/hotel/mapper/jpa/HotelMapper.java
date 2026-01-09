@@ -13,7 +13,6 @@ public interface HotelMapper {
     @Mapping(target = "rooms", ignore= true)
     HotelEntity toEntity(Hotel domain);
     
-    @Mapping(target = "rooms",  ignore= true)
     Hotel toDomain(HotelEntity entity);
 
     Set<Hotel> toDomain(Set<HotelEntity> bookings);

@@ -14,17 +14,13 @@ import org.mapstruct.Mapping;
 })
 public interface GuestMapper {
 
-    @Mapping(target = "preference", source = "preference")
-    @Mapping(target = "bookings", ignore = true)
+    @Mapping(target = "preference",ignore = true)
     GuestEntity toEntity(Guest domain);
 
-    @Mapping(target = "preference", source = "preference")
-    @Mapping(target = "bookings", ignore = true)
+
     Guest toDomain(GuestEntity entity);
 
     @Mapping(target = "id", source = "entity.id")
-    @Mapping(target = "preference", source = "guest")
-    @Mapping(target = "bookings", ignore = true)
     Guest toDomain(GuestEntity entity, GuestPreferencesDocument guest);
 
     Set<Guest> toDomain(Set<GuestEntity> bookings);

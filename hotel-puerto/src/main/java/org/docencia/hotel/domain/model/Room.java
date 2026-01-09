@@ -1,5 +1,6 @@
 package org.docencia.hotel.domain.model;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 /**
@@ -42,13 +43,13 @@ public class Room {
      * @param hotel hotel donde se encuentra la habitacion
      * @param bookings reservas que tiene la habitacion
      */
-    public Room(Long id, String number, String type, float pricePerNight, Hotel hotel, Set<Booking> bookings) {
+    public Room(Long id, String number, String type, float pricePerNight, Hotel hotel) {
         this.id = id;
         this.number = number;
         this.type = type;
         this.pricePerNight = pricePerNight;
         this.hotel = hotel;
-        this.bookings = bookings;
+        this.bookings = new HashSet<>();
     }
 
     public Long getId() {

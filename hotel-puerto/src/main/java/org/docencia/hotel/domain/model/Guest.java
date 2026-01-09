@@ -1,5 +1,6 @@
 package org.docencia.hotel.domain.model;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 /**
@@ -18,7 +19,6 @@ public class Guest {
 
     private Set<Booking> bookings;
 
-    private GuestPreferences preference;
 
     /**
      * Constructor vacio de la clase Guest
@@ -41,15 +41,13 @@ public class Guest {
      * @param email email del huesped
      * @param phone telefono del huesped
      * @param bookings reservas del huesped
-     * @param preference preferencias del huesped
      */
-    public Guest(Long id, String fullName, String email, String phone, Set<Booking> bookings, GuestPreferences preference) {
+    public Guest(Long id, String fullName, String email, String phone) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        this.bookings = bookings;
-        this.preference = preference;
+        this.bookings = new HashSet<>();
     }
 
     public Long getId() {
@@ -92,14 +90,6 @@ public class Guest {
         this.bookings = bookings;
     }
 
-    public GuestPreferences getPreference() {
-        return this.preference;
-    }
-
-    public void setPreference(GuestPreferences preference) {
-        this.preference = preference;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -124,7 +114,6 @@ public class Guest {
             ", email='" + getEmail() + "'" +
             ", phone='" + getPhone() + "'" +
             ", bookings='" + getBookings() + "'" +
-            ", preference='" + getPreference() + "'" +
             "}";
     }
    

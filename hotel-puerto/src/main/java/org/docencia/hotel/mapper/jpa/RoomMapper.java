@@ -10,12 +10,9 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface RoomMapper {
 
-    @Mapping(target = "hotel", source = "hotel")
     @Mapping(target = "bookings", ignore = true)
     RoomEntity toEntity(Room domain);
 
-    @Mapping(target = "hotel", source = "hotel")
-    @Mapping(target = "bookings", ignore = true)
     Room toDomain(RoomEntity entity);
 
     Set<Room> toDomain(Set<RoomEntity> bookings);
